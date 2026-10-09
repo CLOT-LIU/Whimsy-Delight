@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "whimsy_delight:block/sturgeon_roeberry_stage_4"
+	}
+}

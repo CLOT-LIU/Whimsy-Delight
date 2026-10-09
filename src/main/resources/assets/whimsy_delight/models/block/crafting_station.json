@@ -1,12 +1,12 @@
 {
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:translucent",
 	"texture_size": [128, 128],
-    "render_type": "minecraft:translucent",
-    "textures": {
-        "all": "whimsy_delight:block/crafting_station",
-        "particle": "whimsy_delight:block/crafting_station"
-  },
+	"textures": {
+		"particle": "whimsy_delight:block/crafting_station",
+		"all": "whimsy_delight:block/crafting_station"
+	},
 	"elements": [
 		{
 			"from": [0.995, 3.995, 0.995],
@@ -237,36 +237,44 @@
 		},
 		"fixed": {
 			"scale": [0.5, 0.5, 0.5]
+		},
+		"on_shelf": {
+			"rotation": [0, -180, 0]
 		}
 	},
 	"groups": [
 		{
 			"name": "bone3",
 			"origin": [8, 0, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [0, 1, 2]
 		},
 		{
 			"name": "bone5",
 			"origin": [8, 0, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [3, 4, 5]
 		},
 		{
 			"name": "bone2",
 			"origin": [13.5, 9.5, 7],
+			"scope": 0,
 			"color": 0,
 			"children": [6, 7, 8, 9]
 		},
 		{
 			"name": "bone",
 			"origin": [8, 11, 10],
+			"scope": 0,
 			"color": 0,
 			"children": [10, 11]
 		},
 		{
 			"name": "bone4",
 			"origin": [8, 9, 2.75],
+			"scope": 0,
 			"color": 0,
 			"children": [12, 13]
 		},

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "whimsy_delight:block/bonebush_log_horizontal",
+      "x": 90
+    },
+    "axis=y": {
+      "model": "whimsy_delight:block/bonebush_log"
+    },
+    "axis=z": {
+      "model": "whimsy_delight:block/bonebush_log_horizontal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

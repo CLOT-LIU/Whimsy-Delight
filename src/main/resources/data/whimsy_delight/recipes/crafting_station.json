@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "LML",
+    "#F#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "M": {
+      "item": "whimsy_delight:meat_rafflesia"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "result": {
+    "item": "whimsy_delight:crafting_station",
+    "count": 1
+  }
+}

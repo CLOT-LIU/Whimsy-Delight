@@ -1,0 +1,13 @@
+{
+  "type": "whimsy_delight:crafting_station",
+  "input1": {
+    "item": "minecraft:chicken"
+  },
+  "input2": {
+    "item": "minecraft:carrot"
+  },
+  "output": {
+    "item": "whimsy_delight:chicken_turnip"
+  },
+  "cookingTime": 200
+}

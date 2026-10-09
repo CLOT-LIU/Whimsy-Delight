@@ -61,3 +61,10 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+# JEI（可选依赖）
+[[dependencies."${mod_id}"]]
+modId = "jei"
+mandatory = false
+versionRange = "[15.0,)"
+ordering = "AFTER"
+side = "BOTH"

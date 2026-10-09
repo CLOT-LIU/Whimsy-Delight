@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "whimsy_delight:block/eggplant_stage_1"
+	}
+}

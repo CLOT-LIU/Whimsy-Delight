@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "whimsy_delight:block/bonebush_log_top",
+    "side": "whimsy_delight:block/bonebush_log"
+  }
+}

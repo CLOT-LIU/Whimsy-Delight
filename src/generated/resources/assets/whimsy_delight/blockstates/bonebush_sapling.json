@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "stage=0": {
+      "model": "whimsy_delight:block/bonebush_sapling"
+    },
+    "stage=1": {
+      "model": "whimsy_delight:block/bonebush_sapling"
+    }
+  }
+}

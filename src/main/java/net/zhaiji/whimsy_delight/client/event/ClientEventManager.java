@@ -13,6 +13,7 @@ public class ClientEventManager {
 
     public static void modBusListener(IEventBus modBus) {
         modBus.addListener(ClientEventHandler::handlerEntityRenderersEvent$RegisterRenderers);
+        modBus.addListener(ClientEventHandler::handlerClientSetup);
     }
 
     public static void forgeBusListener(IEventBus forgeBus) {

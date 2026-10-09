@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "whimsy_delight:sturgeon_roeberry"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "whimsy_delight:sturgeon_roeberry",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "whimsy_delight:sturgeon_roeberry"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "whimsy_delight:blocks/sturgeon_roeberry"
+}

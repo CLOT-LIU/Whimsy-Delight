@@ -1,0 +1,13 @@
+{
+  "type": "whimsy_delight:crafting_station",
+  "input1": {
+    "item": "minecraft:azalea"
+  },
+  "input2": {
+    "item": "minecraft:bone"
+  },
+  "output": {
+    "item": "whimsy_delight:bonebush_sapling"
+  },
+  "cookingTime": 200
+}

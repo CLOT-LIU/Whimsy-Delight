@@ -13,6 +13,8 @@ import net.zhaiji.whimsy_delight.init.WDBlockEntityType;
 import net.zhaiji.whimsy_delight.init.WDBlocks;
 import net.zhaiji.whimsy_delight.init.WDCreativeModeTab;
 import net.zhaiji.whimsy_delight.init.WDItems;
+import net.zhaiji.whimsy_delight.init.WDMenuTypes;
+import net.zhaiji.whimsy_delight.init.WDRecipes;
 import software.bernie.geckolib.GeckoLib;
 
 @Mod(WhimsyDelight.MOD_ID)
@@ -29,6 +31,9 @@ public class WhimsyDelight {
         WDItems.ITEM.register(modBus);
         WDBlocks.BLOCK.register(modBus);
         WDBlockEntityType.BLOCK_ENTITY_TYPE.register(modBus);
+        WDMenuTypes.MENU_TYPES.register(modBus);
+        WDRecipes.RECIPE_TYPES.register(modBus);
+        WDRecipes.RECIPE_SERIALIZERS.register(modBus);
         WDCreativeModeTab.CREATIVE_MODE_TAB.register(modBus);
 
         CommonEventManager.init(modBus, forgeBus);
