@@ -1,0 +1,117 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "block": "whimsy_delight:milk_fungus",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "0"
+                      }
+                    },
+                    {
+                      "block": "whimsy_delight:milk_fungus",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "1"
+                      }
+                    },
+                    {
+                      "block": "whimsy_delight:milk_fungus",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "2"
+                      }
+                    },
+                    {
+                      "block": "whimsy_delight:milk_fungus",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "3"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "name": "whimsy_delight:milk_fungus_spores"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "whimsy_delight:milk_fungus_sac"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "whimsy_delight:milk_fungus",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "4"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "whimsy_delight:milk_fungus_sac"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 2.0,
+        "min": 0.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "whimsy_delight:milk_fungus",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "4"
+          }
+        },
+        {
+          "chance": 0.5,
+          "condition": "minecraft:random_chance"
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "whimsy_delight:milk_fungus_spores"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "whimsy_delight:blocks/milk_fungus"
+}

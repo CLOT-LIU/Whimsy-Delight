@@ -44,14 +44,12 @@ public class CraftingStationScreen extends AbstractContainerScreen<CraftingStati
         RenderSystem.setShaderTexture(0, TEXTURE);
         guiGraphics.blit(TEXTURE, x, y - 2, 0, 0, this.imageWidth, this.imageHeight, 176, 200);
 
-        // ========== 进度箭头（贴图底部素材：灰色做底，彩色按进度从左到右填充） ==========
+        // ========== 进度箭头（灰色箭头已融合进背景贴图，这里只画彩色进度填充） ==========
         RenderSystem.setShaderTexture(0, TEXTURE);
-        // 灰色箭头（覆盖贴图上自带的彩色图标）
-        guiGraphics.blit(TEXTURE, x + 64, y + 35, 48, 178, 47, 12, 176, 200);
         // 彩色箭头按进度裁剪
         int progressWidth = (int) (this.menu.getCookingProgress() * 47); // 0~47
         if (progressWidth > 0) {
-            guiGraphics.blit(TEXTURE, x + 64, y + 35, 0, 178, progressWidth, 12, 176, 200);
+            guiGraphics.blit(TEXTURE, x + 64, y + 36, 0, 178, progressWidth, 12, 176, 200);
         }
     }
 

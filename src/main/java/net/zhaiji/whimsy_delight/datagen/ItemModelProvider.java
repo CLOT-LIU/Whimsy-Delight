@@ -18,6 +18,9 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         basicItem(WDItems.CHICKEN_TURNIP.get());
         basicItem(WDItems.EGGPLANT_SEEDS.get());
         basicItem(WDItems.EGGPLANT.get());
+        basicItem(WDItems.MILK_FUNGUS_SPORES.get());
+        basicItem(WDItems.MILK_FUNGUS_SAC.get());
+        basicItem(WDItems.CHEESE.get());
         basicItem(WDItems.SALMON_ROEBERRY.get());
         basicItem(WDItems.STURGEON_ROEBERRY.get());
         // 原木、树叶、树苗的物品模型由 BlockStateProvider 的 simpleBlockItem 生成（继承方块模型）

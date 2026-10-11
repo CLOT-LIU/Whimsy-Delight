@@ -24,6 +24,7 @@ public class ClientEventHandler {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(WDBlocks.CHICKEN_TURNIP.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(WDBlocks.EGGPLANT.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(WDBlocks.MILK_FUNGUS.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(WDBlocks.BONEBUSH_SAPLING.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(WDBlocks.BONEBUSH_LEAVES.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(WDBlocks.SALMON_ROEBERRY.get(), RenderType.cutout());

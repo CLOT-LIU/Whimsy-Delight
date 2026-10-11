@@ -4,7 +4,6 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
-import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
@@ -46,8 +45,7 @@ public class CraftingStationRecipeCategory implements IRecipeCategory<CraftingSt
 
     private final IDrawable background;
     private final IDrawable icon;
-    private final IDrawableStatic arrowEmpty;   // 灰色箭头（底，静态）
-    private final IDrawableAnimated arrowFilled;  // 彩色箭头（动画填充）
+    private final IDrawableAnimated arrowFilled;  // 彩色箭头（动画填充，灰色底已融合进背景）
     private final Component title;
 
     @SuppressWarnings("removal")
@@ -60,12 +58,7 @@ public class CraftingStationRecipeCategory implements IRecipeCategory<CraftingSt
         // 图标：工作站方块的 ItemStack（像物品栏一样3D渲染）
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(WDBlocks.CRAFTING_STATION.get().asItem()));
 
-        // 工作站贴图底部箭头素材（47x12）
-        // 灰色：贴图 (48, 178) 静态底
-        // 彩色：贴图 (0, 178) 动画从左到右填充
-        this.arrowEmpty = guiHelper.drawableBuilder(WORKSTATION_TEX, 48, 178, 47, 12)
-            .setTextureSize(176, 200)
-            .build();
+        // 工作站贴图底部彩色箭头素材（47x12，位于贴图 (0, 178)），动画从左到右填充
         this.arrowFilled = guiHelper.drawableBuilder(WORKSTATION_TEX, 0, 178, 47, 12)
             .setTextureSize(176, 200)
             .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
@@ -96,10 +89,9 @@ public class CraftingStationRecipeCategory implements IRecipeCategory<CraftingSt
 
     @Override
     public void draw(CraftingStationRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        // 箭头位置：燃料槽(13,23) + 工作站偏移(29,-9) = (42,14)
-        // 先画灰色底，再画彩色填充（JEI 静态显示完整箭头）
-        this.arrowEmpty.draw(guiGraphics, 42, 14);
-        this.arrowFilled.draw(guiGraphics, 42, 14);
+        // 箭头位置：燃料槽(13,23) + 工作站偏移(29,-8) = (42,15)
+        // 灰色底已融合进背景，只画彩色填充
+        this.arrowFilled.draw(guiGraphics, 42, 15);
     }
 
     @Override

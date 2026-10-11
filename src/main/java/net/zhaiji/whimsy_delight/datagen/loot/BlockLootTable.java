@@ -9,11 +9,15 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+
 import net.minecraftforge.registries.RegistryObject;
 import net.zhaiji.whimsy_delight.block.ChickenTurnipCropBlock;
 import net.zhaiji.whimsy_delight.block.EggplantCropBlock;
 import net.zhaiji.whimsy_delight.block.MeatRafflesiaCropBlock;
+import net.zhaiji.whimsy_delight.block.MilkFungusCropBlock;
 import net.zhaiji.whimsy_delight.block.RoeberryBushBlock;
 import net.zhaiji.whimsy_delight.init.WDBlocks;
 import net.zhaiji.whimsy_delight.init.WDItems;
@@ -106,6 +110,53 @@ public class BlockLootTable extends BlockLootSubProvider {
 
         add(eggplantBlock, eggplantLoot);
 
+        // 牛乳菌作物：未成熟（age 0~3）掉1孢子；成熟（age 4）掉1~3菌囊，孢子50%概率掉1个
+        Block milkFungusBlock = WDBlocks.MILK_FUNGUS.get();
+        LootItemCondition.Builder milkNotMature = LootItemBlockStatePropertyCondition.hasBlockStateProperties(milkFungusBlock)
+            .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MilkFungusCropBlock.AGE, 0))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(milkFungusBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MilkFungusCropBlock.AGE, 1)))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(milkFungusBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MilkFungusCropBlock.AGE, 2)))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(milkFungusBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MilkFungusCropBlock.AGE, 3)));
+        LootItemCondition.Builder milkMature = LootItemBlockStatePropertyCondition.hasBlockStateProperties(milkFungusBlock)
+            .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MilkFungusCropBlock.AGE, 4));
+
+        LootTable.Builder milkFungusLoot = LootTable.lootTable()
+            .withPool(
+                applyExplosionCondition(
+                    milkFungusBlock,
+                    LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(
+                            LootItem.lootTableItem(WDItems.MILK_FUNGUS_SPORES.get()).when(milkNotMature)
+                                .otherwise(LootItem.lootTableItem(WDItems.MILK_FUNGUS_SAC.get()))
+                        )
+                )
+            )
+            .withPool(
+                applyExplosionCondition(
+                    milkFungusBlock,
+                    LootPool.lootPool()
+                        .setRolls(UniformGenerator.between(0.0F, 2.0F))
+                        .add(LootItem.lootTableItem(WDItems.MILK_FUNGUS_SAC.get()))
+                        .when(milkMature)
+                )
+            )
+            .withPool(
+                applyExplosionCondition(
+                    milkFungusBlock,
+                    LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(WDItems.MILK_FUNGUS_SPORES.get()))
+                        .when(milkMature)
+                        .when(LootItemRandomChanceCondition.randomChance(0.5F))
+                )
+            );
+
+        add(milkFungusBlock, milkFungusLoot);
+
         // 大马哈鱼子莓丛：产物 = 种子，未成熟掉1个，成熟掉1~2个
         Block salmonBlock = WDBlocks.SALMON_ROEBERRY.get();
         LootItemCondition.Builder salmonMature = LootItemBlockStatePropertyCondition.hasBlockStateProperties(salmonBlock)
@@ -172,6 +223,7 @@ public class BlockLootTable extends BlockLootSubProvider {
             .filter(block -> block != WDBlocks.MEAT_RAFFLESIA.get())
             .filter(block -> block != WDBlocks.CHICKEN_TURNIP.get())
             .filter(block -> block != WDBlocks.EGGPLANT.get())
+            .filter(block -> block != WDBlocks.MILK_FUNGUS.get())
             .filter(block -> block != WDBlocks.BONEBUSH_LEAVES.get())
             .filter(block -> block != WDBlocks.SALMON_ROEBERRY.get())
             .filter(block -> block != WDBlocks.STURGEON_ROEBERRY.get())

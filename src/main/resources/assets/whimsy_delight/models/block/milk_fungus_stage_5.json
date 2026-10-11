@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "whimsy_delight:block/milk_fungus_stage_5"
+	}
+}

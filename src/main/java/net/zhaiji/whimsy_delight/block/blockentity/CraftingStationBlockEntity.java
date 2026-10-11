@@ -243,9 +243,22 @@ public class CraftingStationBlockEntity extends BaseContainerBlockEntity impleme
             output.grow(result.getCount());
         }
 
-        this.items.get(SLOT_INPUT_1).shrink(1);
-        this.items.get(SLOT_INPUT_2).shrink(1);
+        this.consumeInput(SLOT_INPUT_1);
+        this.consumeInput(SLOT_INPUT_2);
         return true;
+    }
+
+    /** 消耗一个输入槽：有容器剩余物（如奶桶→空桶）则返还，否则直接扣减 */
+    private void consumeInput(int slot) {
+        ItemStack input = this.items.get(slot);
+        if (input.hasCraftingRemainingItem()) {
+            this.items.set(slot, input.getCraftingRemainingItem());
+        } else {
+            input.shrink(1);
+            if (input.isEmpty()) {
+                this.items.set(slot, ItemStack.EMPTY);
+            }
+        }
     }
 
     /**

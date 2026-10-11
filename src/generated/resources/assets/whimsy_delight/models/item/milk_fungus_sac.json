@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "whimsy_delight:item/milk_fungus_sac"
+  }
+}

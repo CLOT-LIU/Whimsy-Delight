@@ -23,6 +23,8 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         meatRafflesia();
         chickenTurnip();
         eggplant();
+        milkFungus();
+        milkAgar();
         bonebushLog();
         bonebushLeaves();
         bonebushSapling();
@@ -74,6 +76,27 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
                 .modelFile(modelFile)
                 .addModel();
         }
+    }
+
+    private void milkFungus() {
+        Block block = WDBlocks.MILK_FUNGUS.get();
+        for (int age = 0; age <= 4; age++) {
+            ModelFile modelFile = models().getExistingFile(modLoc("block/milk_fungus_stage_" + (age + 1)));
+            getVariantBuilder(block)
+                .partialState()
+                .with(BlockStateProperties.AGE_4, age)
+                .modelForState()
+                .modelFile(modelFile)
+                .addModel();
+        }
+    }
+
+    private void milkAgar() {
+        Block block = WDBlocks.MILK_AGAR.get();
+        // 六个面全部使用奶斑贴图；独立方块掉落自身，生成物品模型
+        ModelFile model = models().cubeAll("milk_agar", modLoc("block/milk_agar"));
+        simpleBlock(block, model);
+        simpleBlockItem(block, model);
     }
 
     private void bonebushLog() {
@@ -128,7 +151,7 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         getVariantBuilder(block)
             .partialState().with(SaplingBlock.STAGE, 0).modelForState().modelFile(model).addModel()
             .partialState().with(SaplingBlock.STAGE, 1).modelForState().modelFile(model).addModel();
-        simpleBlockItem(block, model);
+        // 物品栏图标用手绘 16x16 平面图标（models/item/bonebush_sapling.json 为手写文件），不再继承 3D 方块模型
     }
 
     private void salmonRoeberry() {

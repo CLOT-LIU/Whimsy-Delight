@@ -1,6 +1,7 @@
 package net.zhaiji.whimsy_delight.init;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -45,6 +46,34 @@ public class WDItems {
     public static final RegistryObject<Item> EGGPLANT = ITEM.register(
         "eggplant",
         () -> new Item(new Item.Properties())
+    );
+
+    // 牛乳菌孢子（右键种植，只能种在牛乳菌地面上）
+    public static final RegistryObject<Item> MILK_FUNGUS_SPORES = ITEM.register(
+        "milk_fungus_spores",
+        () -> new ItemNameBlockItem(WDBlocks.MILK_FUNGUS.get(), new Item.Properties())
+    );
+
+    // 牛乳培养基（独立方块，挖掉掉自身）
+    public static final RegistryObject<Item> MILK_AGAR = ITEM.register(
+        "milk_agar",
+        () -> new BlockItem(WDBlocks.MILK_AGAR.get(), new Item.Properties())
+    );
+
+    // 牛乳菌囊（收获物，可食用：饱食度2 饱和度1.0）
+    public static final RegistryObject<Item> MILK_FUNGUS_SAC = ITEM.register(
+        "milk_fungus_sac",
+        () -> new Item(new Item.Properties().food(
+            new FoodProperties.Builder().nutrition(2).saturationMod(0.25F).build()
+        ))
+    );
+
+    // 芝士（可食用：饱食度5 饱和度6.0）
+    public static final RegistryObject<Item> CHEESE = ITEM.register(
+        "cheese",
+        () -> new Item(new Item.Properties().food(
+            new FoodProperties.Builder().nutrition(5).saturationMod(0.6F).build()
+        ))
     );
 
     // 工作站
