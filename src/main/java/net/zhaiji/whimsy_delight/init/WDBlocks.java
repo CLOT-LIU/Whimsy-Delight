@@ -10,8 +10,8 @@ import net.zhaiji.whimsy_delight.block.ChickenTurnipCropBlock;
 import net.zhaiji.whimsy_delight.block.CraftingStationBlock;
 import net.zhaiji.whimsy_delight.block.EggplantCropBlock;
 import net.zhaiji.whimsy_delight.block.MeatRafflesiaCropBlock;
-import net.zhaiji.whimsy_delight.block.MilkAgarBlock;
 import net.zhaiji.whimsy_delight.block.MilkFungusCropBlock;
+import net.zhaiji.whimsy_delight.block.ProteinSoilBlock;
 import net.zhaiji.whimsy_delight.block.RoeberryBushBlock;
 import net.zhaiji.whimsy_delight.init.WDItems;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -48,10 +48,10 @@ public class WDBlocks {
         MilkFungusCropBlock::new
     );
 
-    // 牛乳培养基（独立方块，牛乳菌只能种在它上面）
-    public static final RegistryObject<Block> MILK_AGAR = BLOCK.register(
-        "milk_agar",
-        MilkAgarBlock::new
+    // 蛋白沃土（独立方块，所有不需要耕地的植物都能种在上面）
+    public static final RegistryObject<Block> PROTEIN_SOIL = BLOCK.register(
+        "protein_soil",
+        ProteinSoilBlock::new
     );
 
     // 工作站

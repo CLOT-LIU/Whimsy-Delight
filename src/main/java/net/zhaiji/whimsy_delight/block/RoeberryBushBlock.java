@@ -25,11 +25,14 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.zhaiji.whimsy_delight.init.WDBlocks;
+
 import java.util.function.Supplier;
 
 /**
  * 鱼子莓丛：类似甜浆果丛，4 个生长阶段（AGE_3），成熟时右键收获，回到阶段 2。
  * 大马哈/鲟两种鱼子莓各一个实例，共享阶段 0~2 贴图，阶段 3 独立。
+ * 蛋白沃土上额外加速：生长概率 1/5 → 2/5。
  */
 public class RoeberryBushBlock extends BushBlock implements BonemealableBlock {
     public static final int MAX_AGE = 3;
@@ -83,9 +86,15 @@ public class RoeberryBushBlock extends BushBlock implements BonemealableBlock {
     @Override
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         int age = pState.getValue(AGE);
-        if (age < MAX_AGE && pLevel.getRawBrightness(pPos.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, pRandom.nextInt(5) == 0)) {
-            pLevel.setBlock(pPos, pState.setValue(AGE, age + 1), 2);
-            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
+        if (age < MAX_AGE && pLevel.getRawBrightness(pPos.above(), 0) >= 9) {
+            // 蛋白沃土额外加速：1/5 → 2/5
+            boolean roll = pLevel.getBlockState(pPos.below()).is(WDBlocks.PROTEIN_SOIL.get())
+                ? pRandom.nextInt(5) < 2
+                : pRandom.nextInt(5) == 0;
+            if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, roll)) {
+                pLevel.setBlock(pPos, pState.setValue(AGE, age + 1), 2);
+                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
+            }
         }
     }
 

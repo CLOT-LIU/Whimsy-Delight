@@ -54,10 +54,10 @@ public class WDItems {
         () -> new ItemNameBlockItem(WDBlocks.MILK_FUNGUS.get(), new Item.Properties())
     );
 
-    // 牛乳培养基（独立方块，挖掉掉自身）
-    public static final RegistryObject<Item> MILK_AGAR = ITEM.register(
-        "milk_agar",
-        () -> new BlockItem(WDBlocks.MILK_AGAR.get(), new Item.Properties())
+    // 蛋白沃土（独立方块，挖掉掉自身）
+    public static final RegistryObject<Item> PROTEIN_SOIL = ITEM.register(
+        "protein_soil",
+        () -> new BlockItem(WDBlocks.PROTEIN_SOIL.get(), new Item.Properties())
     );
 
     // 牛乳菌囊（收获物，可食用：饱食度2 饱和度1.0）

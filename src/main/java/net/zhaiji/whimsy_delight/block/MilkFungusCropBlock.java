@@ -1,6 +1,8 @@
 package net.zhaiji.whimsy_delight.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -25,9 +27,10 @@ import net.zhaiji.whimsy_delight.init.WDItems;
 
 /**
  * 牛乳菌作物：5 个生长阶段（milk_fungus_stage_1~5），cross 模型。
- * - 只能种在牛乳培养基（MilkAgarBlock）上
+ * - 只能种在蛋白沃土（ProteinSoilBlock）上
  * - 类似蛋茄：成熟（age 4）右键收获牛乳菌囊 + 1~2 孢子，回到 age 2，可反复收获
  * - 骨粉每次只推进 1 个阶段
+ * - 蛋白沃土上额外加速（在沃土级加成基础上速度再 x2）
  */
 public class MilkFungusCropBlock extends CropBlock {
     public static final int MAX_AGE = 4;
@@ -73,10 +76,29 @@ public class MilkFungusCropBlock extends CropBlock {
         return 1;
     }
 
-    // 只能种在牛乳培养基上
+    // 只能种在蛋白沃土上
     @Override
     protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return pState.is(WDBlocks.MILK_AGAR.get());
+        return pState.is(WDBlocks.PROTEIN_SOIL.get());
+    }
+
+    // 类似原版 CropBlock：光照>=9 时生长；蛋白沃土上在沃土级加成基础上速度再 x2
+    @Override
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+        if (pLevel.getRawBrightness(pPos, 0) >= 9) {
+            int i = this.getAge(pState);
+            if (i < this.getMaxAge()) {
+                float f = getGrowthSpeed(this, pLevel, pPos);
+                if (pLevel.getBlockState(pPos.below()).is(WDBlocks.PROTEIN_SOIL.get())) {
+                    f *= 2.0F;
+                }
+                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, pRandom.nextInt((int) (25.0F / f) + 1) == 0)) {
+                    pLevel.setBlock(pPos, this.getStateForAge(i + 1), 2);
+                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
+                }
+            }
+        }
     }
 
     @Override

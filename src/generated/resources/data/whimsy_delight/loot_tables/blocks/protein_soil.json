@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "whimsy_delight:milk_agar"
+          "name": "whimsy_delight:protein_soil"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "whimsy_delight:blocks/milk_agar"
+  "random_sequence": "whimsy_delight:blocks/protein_soil"
 }

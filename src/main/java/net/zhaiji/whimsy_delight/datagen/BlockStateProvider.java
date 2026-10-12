@@ -24,7 +24,7 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         chickenTurnip();
         eggplant();
         milkFungus();
-        milkAgar();
+        proteinSoil();
         bonebushLog();
         bonebushLeaves();
         bonebushSapling();
@@ -91,10 +91,10 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         }
     }
 
-    private void milkAgar() {
-        Block block = WDBlocks.MILK_AGAR.get();
-        // 六个面全部使用奶斑贴图；独立方块掉落自身，生成物品模型
-        ModelFile model = models().cubeAll("milk_agar", modLoc("block/milk_agar"));
+    private void proteinSoil() {
+        Block block = WDBlocks.PROTEIN_SOIL.get();
+        // 六个面全部使用统一贴图；独立方块掉落自身，生成物品模型
+        ModelFile model = models().cubeAll("protein_soil", modLoc("block/protein_soil"));
         simpleBlock(block, model);
         simpleBlockItem(block, model);
     }
