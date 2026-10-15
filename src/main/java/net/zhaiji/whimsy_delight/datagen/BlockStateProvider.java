@@ -23,6 +23,8 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         meatRafflesia();
         chickenTurnip();
         eggplant();
+        gooseEggplant();
+        duckEggplant();
         milkFungus();
         proteinSoil();
         bonebushLog();
@@ -69,6 +71,34 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         Block block = WDBlocks.EGGPLANT.get();
         for (int age = 0; age <= 4; age++) {
             ModelFile modelFile = models().getExistingFile(modLoc("block/eggplant_stage_" + (age + 1)));
+            getVariantBuilder(block)
+                .partialState()
+                .with(BlockStateProperties.AGE_4, age)
+                .modelForState()
+                .modelFile(modelFile)
+                .addModel();
+        }
+    }
+
+    private void gooseEggplant() {
+        Block block = WDBlocks.GOOSE_EGGPLANT.get();
+        String[] stageModels = {"eggplant_stage_1", "eggplant_stage_2", "eggplant_stage_3", "eggplant_stage_4", "goose_eggplant_stage_5"};
+        for (int age = 0; age <= 4; age++) {
+            ModelFile modelFile = models().getExistingFile(modLoc("block/" + stageModels[age]));
+            getVariantBuilder(block)
+                .partialState()
+                .with(BlockStateProperties.AGE_4, age)
+                .modelForState()
+                .modelFile(modelFile)
+                .addModel();
+        }
+    }
+
+    private void duckEggplant() {
+        Block block = WDBlocks.DUCK_EGGPLANT.get();
+        String[] stageModels = {"eggplant_stage_1", "eggplant_stage_2", "eggplant_stage_3", "eggplant_stage_4", "duck_eggplant_stage_5"};
+        for (int age = 0; age <= 4; age++) {
+            ModelFile modelFile = models().getExistingFile(modLoc("block/" + stageModels[age]));
             getVariantBuilder(block)
                 .partialState()
                 .with(BlockStateProperties.AGE_4, age)

@@ -110,6 +110,54 @@ public class BlockLootTable extends BlockLootSubProvider {
 
         add(eggplantBlock, eggplantLoot);
 
+        // 鹅蛋茄作物：同蛋茄，成熟掉鹅蛋茄
+        Block gooseEggplantBlock = WDBlocks.GOOSE_EGGPLANT.get();
+        LootItemCondition.Builder gooseNotMature = LootItemBlockStatePropertyCondition.hasBlockStateProperties(gooseEggplantBlock)
+            .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 0))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(gooseEggplantBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 1)))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(gooseEggplantBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 2)))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(gooseEggplantBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 3)));
+        LootTable.Builder gooseLoot = LootTable.lootTable()
+            .withPool(
+                applyExplosionCondition(
+                    gooseEggplantBlock,
+                    LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(
+                            LootItem.lootTableItem(WDItems.GOOSE_EGGPLANT_SEEDS.get()).when(gooseNotMature)
+                                .otherwise(LootItem.lootTableItem(WDItems.GOOSE_EGGPLANT.get()))
+                        )
+                )
+            );
+        add(gooseEggplantBlock, gooseLoot);
+
+        // 鸭蛋茄作物：同蛋茄，成熟掉鸭蛋茄
+        Block duckEggplantBlock = WDBlocks.DUCK_EGGPLANT.get();
+        LootItemCondition.Builder duckNotMature = LootItemBlockStatePropertyCondition.hasBlockStateProperties(duckEggplantBlock)
+            .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 0))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(duckEggplantBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 1)))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(duckEggplantBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 2)))
+            .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(duckEggplantBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(EggplantCropBlock.AGE, 3)));
+        LootTable.Builder duckLoot = LootTable.lootTable()
+            .withPool(
+                applyExplosionCondition(
+                    duckEggplantBlock,
+                    LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(
+                            LootItem.lootTableItem(WDItems.DUCK_EGGPLANT_SEEDS.get()).when(duckNotMature)
+                                .otherwise(LootItem.lootTableItem(WDItems.DUCK_EGGPLANT.get()))
+                        )
+                )
+            );
+        add(duckEggplantBlock, duckLoot);
+
         // 牛乳菌作物：未成熟（age 0~3）掉1孢子；成熟（age 4）掉1~3菌囊，孢子50%概率掉1个
         Block milkFungusBlock = WDBlocks.MILK_FUNGUS.get();
         LootItemCondition.Builder milkNotMature = LootItemBlockStatePropertyCondition.hasBlockStateProperties(milkFungusBlock)

@@ -18,6 +18,10 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         basicItem(WDItems.CHICKEN_TURNIP.get());
         basicItem(WDItems.EGGPLANT_SEEDS.get());
         basicItem(WDItems.EGGPLANT.get());
+        basicItem(WDItems.GOOSE_EGGPLANT_SEEDS.get());
+        basicItem(WDItems.GOOSE_EGGPLANT.get());
+        basicItem(WDItems.DUCK_EGGPLANT_SEEDS.get());
+        basicItem(WDItems.DUCK_EGGPLANT.get());
         basicItem(WDItems.MILK_FUNGUS_SPORES.get());
         basicItem(WDItems.MILK_FUNGUS_SAC.get());
         basicItem(WDItems.CHEESE.get());

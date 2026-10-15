@@ -75,7 +75,7 @@ public class EggplantCropBlock extends CropBlock {
         return WDItems.EGGPLANT_SEEDS.get();
     }
 
-    // 类似甜浆果丛：成熟时右键收获蛋茄，作物回到 age 3（阶段4），可反复结果
+    // 类似甜浆果丛：成熟时右键收获蛋茄，作物回到 age 2（阶段3），可反复结果
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         int age = this.getAge(pState);
@@ -85,10 +85,15 @@ public class EggplantCropBlock extends CropBlock {
         }
         // 成熟：掉落 1~2 个蛋茄
         int count = 1 + pLevel.random.nextInt(2);
-        popResource(pLevel, pPos, new ItemStack(WDItems.EGGPLANT.get(), count));
+        popResource(pLevel, pPos, new ItemStack(getFruit().asItem(), count));
         // 作物回到 age 2（阶段3），继续生长可再次收获
         pLevel.setBlock(pPos, pState.setValue(AGE, 2), 2);
         return InteractionResult.sidedSuccess(pLevel.isClientSide);
+    }
+
+    // 供子类覆盖以返回对应的产物物品
+    protected ItemLike getFruit() {
+        return WDItems.EGGPLANT.get();
     }
 
     @Override

@@ -8,7 +8,9 @@ import net.zhaiji.whimsy_delight.WhimsyDelight;
 import net.zhaiji.whimsy_delight.block.BonebushSaplingBlock;
 import net.zhaiji.whimsy_delight.block.ChickenTurnipCropBlock;
 import net.zhaiji.whimsy_delight.block.CraftingStationBlock;
+import net.zhaiji.whimsy_delight.block.DuckEggplantCropBlock;
 import net.zhaiji.whimsy_delight.block.EggplantCropBlock;
+import net.zhaiji.whimsy_delight.block.GooseEggplantCropBlock;
 import net.zhaiji.whimsy_delight.block.MeatRafflesiaCropBlock;
 import net.zhaiji.whimsy_delight.block.MilkFungusCropBlock;
 import net.zhaiji.whimsy_delight.block.ProteinSoilBlock;
@@ -40,6 +42,18 @@ public class WDBlocks {
     public static final RegistryObject<Block> EGGPLANT = BLOCK.register(
         "eggplant",
         EggplantCropBlock::new
+    );
+
+    // 鹅蛋茄（蛋茄变种）
+    public static final RegistryObject<Block> GOOSE_EGGPLANT = BLOCK.register(
+        "goose_eggplant",
+        GooseEggplantCropBlock::new
+    );
+
+    // 鸭蛋茄（蛋茄变种）
+    public static final RegistryObject<Block> DUCK_EGGPLANT = BLOCK.register(
+        "duck_eggplant",
+        DuckEggplantCropBlock::new
     );
 
     // 牛乳菌

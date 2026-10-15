@@ -48,6 +48,30 @@ public class WDItems {
         () -> new Item(new Item.Properties())
     );
 
+    // 鹅蛋茄种子
+    public static final RegistryObject<Item> GOOSE_EGGPLANT_SEEDS = ITEM.register(
+        "goose_eggplant_seeds",
+        () -> new ItemNameBlockItem(WDBlocks.GOOSE_EGGPLANT.get(), new Item.Properties())
+    );
+
+    // 鹅蛋茄（产物）
+    public static final RegistryObject<Item> GOOSE_EGGPLANT = ITEM.register(
+        "goose_eggplant",
+        () -> new Item(new Item.Properties())
+    );
+
+    // 鸭蛋茄种子
+    public static final RegistryObject<Item> DUCK_EGGPLANT_SEEDS = ITEM.register(
+        "duck_eggplant_seeds",
+        () -> new ItemNameBlockItem(WDBlocks.DUCK_EGGPLANT.get(), new Item.Properties())
+    );
+
+    // 鸭蛋茄（产物）
+    public static final RegistryObject<Item> DUCK_EGGPLANT = ITEM.register(
+        "duck_eggplant",
+        () -> new Item(new Item.Properties())
+    );
+
     // 牛乳菌孢子（右键种植，只能种在牛乳菌地面上）
     public static final RegistryObject<Item> MILK_FUNGUS_SPORES = ITEM.register(
         "milk_fungus_spores",
